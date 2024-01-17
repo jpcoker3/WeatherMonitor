@@ -10,11 +10,12 @@
 
 #include <PDM.h> // microphone
 
+#include "private.h" // passwords and api keys
+
 #define TIME_OFFSET (-6 * 3600) // UTC -6 hours
 
 // ##### neccesary weather info ##### //
 
-String api_key = "dcf7e97fc58e21a9de091ad61593a246";
 String units = "imperial";  // or "metric"
 String language = "en";   // See notes tab
 
@@ -182,7 +183,7 @@ void setForecast()
 
   Serial.print("\nRequesting weather information from OpenWeather... ");
 
-  ow.getForecast(forecast, api_key, latitude, longitude, units, language); //  get whole forecast
+  ow.getForecast(forecast, Private::apiKey , latitude, longitude, units, language); //  get whole forecast
 
   Serial.println("Weather from OpenWeather\n");
 
@@ -275,7 +276,7 @@ void setup() {
 
   // Connect to Wi-Fi
   set_text(0, "Connecting WIFI");
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  WiFi.begin(Private::wifiName, Private::wifiPassword);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
