@@ -314,7 +314,9 @@ void loop() {
 
         // wait 30s before turning off
         delay(1 * 30 * 1000); // min, sec, msec
+
         screen_power(false);
+        lcd.clear();
       
       }
     }
